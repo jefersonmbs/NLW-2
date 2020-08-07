@@ -6,36 +6,38 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.svg'
 import totalConnectionsIcon from '../../assets/images/icons/purple-heart.svg'
 import './style.css';
 
-function Landing(){
+function Landing() {
     return (
-        <div id="landing">
-            <div className="container" id="landing-container">
-               <div className="logo-container">
-                   <img src={logoImg} alt="Logo"/>
-                   <h2>Sua Plataforma de estudos online.</h2>
-               </div>
+        <div id="page-landing">
+            <div id="page-landing-content" className="container">
+                <div className="logo-container">
+                    <img src={logoImg} alt="Proffy"/>
+                    <h2>Sua plataforma de estudos online.</h2>
+                </div>
+
                 <img
                     src={landingImg}
-                    alt="Landing"
+                    alt="Plataforma de estudos"
                     className="hero-image"
                 />
+
                 <div className="buttons-container">
-                    <a href="" className="study"/>
-                    <img src={studyIcon} alt="Estudar"/>
-                    Estudar
-                </div>
-                <div className="buttons-container">
-                    <a href="" className="give-classes"/>
-                    <img src={giveClassesIcon} alt="Dar"/>
-                    Estudar
+                    <a className="study">
+                        <img src={studyIcon} alt="Estudar"/>
+                        Estudar
+                    </a>
+
+                    <a className="give-classes">
+                        <img src={giveClassesIcon} alt="Dar aulas"/>
+                        Dar aulas
+                    </a>
                 </div>
 
                 <span className="total-connections">
-                    Total de 200 conecxões já realizadas. <img src={totalConnectionsIcon} alt=""/>
+                    Total de 20 conexões já realizadas
+                    <img src={totalConnectionsIcon} alt="Coração Roxo"/>
                 </span>
-
             </div>
-
         </div>
     )
 }
