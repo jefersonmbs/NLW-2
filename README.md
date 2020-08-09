@@ -1,3 +1,5 @@
+<h1 align="center">Welcome to NLW-2 👋</h1>
+
 <h1 align="center">
   <img src=".github/logo.svg" alt="Logo" height="70">
 </h1>
@@ -10,3 +12,7 @@
 
  
 </p>
+
+---
+
+Made with 💜&nbsp; by Jeferson Martins 👋
