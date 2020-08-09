@@ -15,4 +15,4 @@
 
 ---
 
-Made with 💜&nbsp; by Jeferson Martins 👋
+Made with :airplane: by Jeferson Martins 👋
