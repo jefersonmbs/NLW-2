@@ -1,6 +1,5 @@
 import express from 'express';
-// @ts-ignore
-import routes from './routes.ts';
+import routes from './routes';
 const app = express();
 app.use(express.json());
 app.use(routes)

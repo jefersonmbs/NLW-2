@@ -18,3 +18,5 @@ routes.get('/users', (request, response) =>{
     ]
     return  response.json(users);
 })
+
+export default routes;
