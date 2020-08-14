@@ -1,45 +1,25 @@
 import express from "express";
 import db from "./database/connections";
+import ClassesController from "./controllers/classesController";
+const routes = express.Router();
 
-const routes  = express.Router();
+const classesController = new ClassesController();
 
-routes.post('/classes', async(request, response) =>{
-    const {
-        name,
-        avatar,
-        whatsapp,
-        bio,
-        subject,
-        cost,
-        schedule
-    }=request.body;
 
-    const insertUserIds = await db('tb_users').insert({
-        name,
-        avatar,
-        whatsapp,
-        biografia:bio,
-    });
+routes.post('/classes',classesController.creat)
 
-    const userId = insertUserIds[0];
-
-    const insertClassIds= await db('tb_classes').insert({
-        subject,
-        cost,
-        userId,
-    });
-    const class_id = insertClassIds[0];
-
-    await db('tb_classes_schedule').insert({})
-    return response.send();
+routes.get('/classes', async (req, res) => {
+    const data = await db('tb_classes').select('*')
+    return res.json(data);
 })
 
-routes.get('/users/:id', async (request, response) =>{
-    const {id} =request.params;
+
+routes.get('/users/:id', async (request, response) => {
+    const {id} = request.params;
     console.log(id)
-    const data2=await db('tb_users').select('name','whatsapp','biografia')
-        .where('id',id);
-    return  response.json(data2);
+    const data2 = await db('tb_users').select('name', 'whatsapp', 'biografia')
+        .where('id', id);
+    return response.json(data2);
 })
 
 export default routes;
