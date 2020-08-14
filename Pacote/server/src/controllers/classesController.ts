@@ -9,12 +9,28 @@ interface scheduleItem {
 }
 
 export default class classesController {
-    async index(request: Request,response: Response){
-        const filters = request.query;
+    async index(req: Request, res: Response): Promise<Response> {
+        const filters = req.query;
 
-        if(!filters.subject || !filters.week_day || !filters.time){
-            return response.status(400).json({error:'Missing Filters'});
+        const subject = filters.subject as string;
+        const week_day = filters.week_day as string;
+        const time = filters.time as string;
+
+        if (!filters.week_day || !filters.subject || !filters.time) {
+            return res.status(400).json({
+                error: 'Missing filters ',
+            });
         }
+
+        const timeInMinutes = convertHoursToMinutes(time);
+
+        const classes = await db('tb_classes')
+            .where('tb_classes.subject','=',subject )
+            .join('tb_users','tb_classes.userId','=','tb_users.id')
+            .join('tb_class_schedule','tb_classes.id','=','tb_class_schedule.class_id')
+
+
+        return res.json(classes);
     }
 
     async creat(request: Request, response: Response) {
