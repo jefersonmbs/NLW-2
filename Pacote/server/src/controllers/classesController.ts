@@ -34,7 +34,7 @@ export default class classesController {
             .where('tb_classes.subject','=',subject )
             .andWhere('tb_class_schedule.week_day', '=', week_day)
             .andWhere('tb_class_schedule.from' , '<=', timeInMinutes )
-            .andWhere('tb_class_schedule.to' , '>=', timeInMinutes )
+            .andWhere('tb_class_schedule.to' , '>', timeInMinutes )
             .join('tb_users','tb_classes.userId','=','tb_users.id')
             .join('tb_class_schedule','tb_classes.id','=','tb_class_schedule.class_id')
             .select(['tb_classes.*' , 'tb_users.*','tb_class_schedule.*'])
