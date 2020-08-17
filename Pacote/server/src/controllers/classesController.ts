@@ -25,9 +25,20 @@ export default class classesController {
         const timeInMinutes = convertHoursToMinutes(time);
 
         const classes = await db('tb_classes')
+            /*.whereExists(function(){
+                this.select('tb_class_schedule.*')
+                    .from('tb_class_schedule')
+                    .whereRaw('`tb_class_schedule`.`class_id` = `tb_classes`.`id`')
+                    .whereRaw('`tb_class_schedule`.`week_day` = ??',  [(Number(week_day))])
+            })*/
             .where('tb_classes.subject','=',subject )
+            .andWhere('tb_class_schedule.week_day', '=', week_day)
+            .andWhere('tb_class_schedule.from' , '<=', timeInMinutes )
+            .andWhere('tb_class_schedule.to' , '>=', timeInMinutes )
             .join('tb_users','tb_classes.userId','=','tb_users.id')
             .join('tb_class_schedule','tb_classes.id','=','tb_class_schedule.class_id')
+            .select(['tb_classes.*' , 'tb_users.*','tb_class_schedule.*'])
+
 
 
         return res.json(classes);
