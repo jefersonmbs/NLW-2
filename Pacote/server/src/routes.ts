@@ -5,10 +5,8 @@ const routes = express.Router();
 
 const classesController = new ClassesController();
 
-routes.get('/classes', classesController.index)
-routes.post('/classes',classesController.creat)
-
-
+routes.get('/classes', classesController.index);
+routes.post('/classes',classesController.creat);
 
 
 routes.get('/users/:id', async (request, response) => {
